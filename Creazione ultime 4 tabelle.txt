@@ -1,0 +1,37 @@
+CREATE TABLE Notifica (
+idNotifica VARCHAR(255) PRIMARY KEY,
+data DATE,
+ora TIME,
+userame VARCHAR(255),
+idPost INT,
+idInterazione INT,
+FOREIGN KEY (username) REFERENCES Utente(username),
+FOREIGN KEY (idPost) REFERENCES Post(idPost),
+FOREIGN KEY (idInterazione) REFERENCES Interazione(idInterazione)
+);
+
+CREATE TABLE Interazione (
+idInterazione VARCHAR(255) PRIMARY KEY,
+data DATE,
+ora TIME,
+testo VARCHAR(255),
+tipoInterazione VARCHAR(255),
+username VARCHAR(255),
+idPost INT,
+FOREIGN KEY (username) REFERENCES Utente(username),
+FOREIGN KEY (idPost) REFERENCES Post(idPost)
+);
+
+CREATE TABLE Crea (
+username VARCHAR(255),
+idGruppo VARCHAR(255),
+FOREIGN KEY (username) REFERENCES Utente(username),
+FOREIGN KEY (idGruppo) REFERENCES Gruppo(idGruppo)
+);
+
+CREATE TABLE Amministra (
+username VARCHAR(255),
+idGruppo VARCHAR(255),
+FOREIGN KEY (username) REFERENCES Utente(username),
+FOREIGN KEY (idGruppo) REFERENCES Gruppo(idGruppo)
+);
