@@ -1,0 +1,38 @@
+CREATE TABLE Utente (
+	username VARCHAR(255) PRIMARY KEY,
+	email VARCHAR(255),
+	password VARCHAR(255)
+);
+
+CREATE TABLE Gruppo (
+    idGruppo INT PRIMARY KEY,
+    nome VARCHAR(255),
+    tag VARCHAR(255),
+    dataCreazione DATE,
+    usernameCreatore VARCHAR(255),
+    FOREIGN KEY (usernameCreatore) REFERENCES Utente(username)
+);
+
+CREATE TABLE Richiesta (
+    idRichiesta INT PRIMARY KEY,
+    dataRichiesta DATE,
+    oraRichiesta TIME,
+    testo VARCHAR(255),
+    esito BOOLEAN,
+    username VARCHAR(255),
+    idGruppo INT,
+    FOREIGN KEY (username) REFERENCES Utente(username),
+    FOREIGN KEY (idGruppo) REFERENCES Gruppo(idGruppo)
+);
+
+CREATE TABLE Post (
+    idPost INT PRIMARY KEY,
+    foto VARCHAR(255),
+    testo VARCHAR(255),
+    dataPubblicazione DATE,
+    oraPubblicazione TIME,
+    idGruppo INT,
+    username VARCHAR(255),
+    FOREIGN KEY (idGruppo) REFERENCES Gruppo(idGruppo),
+    FOREIGN KEY (username) REFERENCES Utente(username)
+);
