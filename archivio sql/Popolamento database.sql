@@ -72,6 +72,6 @@ INSERT INTO amministra VALUES('markbrown','g1');
 --popolamento interazioni
 
 INSERT INTO interazione VALUES ('i1',CURRENT_DATE,CURRENT_TIME,'bel post!','commento','MarySmith','p4');
-INSERT INTO interazione VALUES ('i2',CURRENT_DATE,CURRENT_TIME,'bel post!','like','MarySmith','p4');
+INSERT INTO interazione VALUES ('i2',CURRENT_DATE,CURRENT_TIME,'bel post!','like','MarySmith','p4');  -- c'è un errore commesso appositamente per verificare l'efficienza del trigger
 
 

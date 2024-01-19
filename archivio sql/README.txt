@@ -200,7 +200,7 @@ DECLARE
  myUsernameCreatore utente."username"%TYPE;
  myIdNotifica notifica."idNotifica"%TYPE;
 BEGIN
- 	SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255) -- ricavo l'idNotifica ricavando il massimo id e incrementandolo di uno (con appositi casting)
+ 	SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255) -- ricavo l'idNotifica prelevando il massimo id precedentemente memorizzato e incrementandolo di 1 (con appositi casting)
 	INTO myIdNotifica
 	FROM notifica;
 	
@@ -247,7 +247,7 @@ BEGIN
 	
 	FOR iscritto IN cursoreIscritti --nel loop genero una notifica per tutti gli iscritti nel cursore
 	LOOP
-		SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255)
+		SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255) -- ricavo l'idNotifica prelevando il massimo id precedentemente memorizzato e incrementandolo di 1 (con appositi 										 casting)
 		INTO myIdNotifica
 		FROM notifica;
 
@@ -275,6 +275,7 @@ EXECUTE FUNCTION genera_notificapost_function();
 -----------------------------------------------------------------------------------------------
 Quando viene inserita una riga di interazione viene creata una notifica. Il campo username della notifica è l'username dell'autore del post, il campo idInterazione
 è l'id dell'interazione generante, il campo idPost avrà valore NULL
+
 CREATE OR REPLACE FUNCTION genera_notificainterazione_function()
   RETURNS trigger AS
 $$
@@ -282,7 +283,7 @@ DECLARE
  myUsernameAutore utente."username"%TYPE;
  myIdNotifica notifica."idNotifica"%TYPE;
 BEGIN
- 	SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255)
+ 	SELECT (MAX("idNotifica" :: INTEGER)+1)::VARCHAR(255) -- ricavo l'idNotifica prelevando il massimo id precedentemente memorizzato e incrementandolo di 1 (con appositi casting)
 	INTO myIdNotifica
 	FROM notifica;
 	
